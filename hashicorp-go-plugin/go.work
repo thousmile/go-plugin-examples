@@ -1,0 +1,8 @@
+go 1.22
+
+use (
+	./shared
+	./primary
+	./extensions/chinese
+	./extensions/english
+)
