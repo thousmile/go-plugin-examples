@@ -2,24 +2,40 @@
 
 ## 注意 
 
+## windows
+```shell
+go build -buildmode=c-shared -o ./libplugins.dll ./extensions/chinese
+go build -o main.exe .
+.\main.exe
+
+2024/06/07 21:58:49 INFO message from ChineseGreeter.SayHello name=tom
+2024/06/07 21:58:49 INFO SayHello result="Chinese : 你好 tom ... !"
+
+
+
+go build -buildmode=c-shared -o ./libplugins.dll ./extensions/english
+.\main.exe
+
+2024/06/07 21:58:18 INFO message from EnglishGreeter.SayHello name=tom
+2024/06/07 21:58:18 INFO SayHello result="English : Hello tom ... !"
+
+```
+
 ## linux
 ```shell
-mkdir plugins
-
-go build -buildmode=c-shared -o ./primary/libplugins.dll ./extensions/chinese
-
-go build -buildmode=c-shared -o ./primary/libplugins.dll ./extensions/english
-
-go build -o main ./primary
-
+go build -buildmode=c-shared -o ./libplugins.so ./extensions/chinese
+go build -o main .
 ./main
 
-2024/06/07 17:48:40 INFO plugin lookup success pluginName=chinese.so
-2024/06/07 17:48:40 INFO message from ChineseGreeter.SayHello
-2024/06/07 17:48:40 INFO run SayHello by plugin result="Chinese : 你好 tom ... !"
+2024/06/07 21:58:49 INFO message from ChineseGreeter.SayHello name=tom
+2024/06/07 21:58:49 INFO SayHello result="Chinese : 你好 tom ... !"
 
-2024/06/07 17:48:40 INFO plugin lookup success pluginName=english.so
-2024/06/07 17:48:40 INFO message from EnglishGreeter.SayHello
-2024/06/07 17:48:40 INFO run SayHello by plugin result="English : Hello tom ... !"
+
+
+go build -buildmode=c-shared -o ./libplugins.so ./extensions/english
+./main
+
+2024/06/07 21:58:18 INFO message from EnglishGreeter.SayHello name=tom
+2024/06/07 21:58:18 INFO SayHello result="English : Hello tom ... !"
 
 ```
